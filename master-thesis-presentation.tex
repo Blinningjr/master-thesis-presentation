@@ -4,24 +4,26 @@
 \documentclass[aspectratio=169,xcolor=dvipsnames]{beamer}
 \usetheme{Simple}
 
+\usepackage{import}
 \usepackage{hyperref}
 \usepackage{graphicx} % Allows including images
 \usepackage{booktabs} % Allows the use of \toprule, \midrule and \bottomrule in tables
 
+\graphicspath{ {images/} }
 %----------------------------------------------------------------------------------------
 %	TITLE PAGE
 %----------------------------------------------------------------------------------------
 
 % The title
-\title[short title]{Simple Beamer Theme}
-\subtitle{Subtitle}
+\title[short title]{Improving Debugging For Optimized Rust Code}
+\subtitle{Master Thesis}
 
-\author[Pin-Yen] {Pin-Yen Huang}
-\institute[NTU] % Your institution may be shorthand to save space
+\author[Niklas] {Niklas Lundberg}
+\institute[LTU] % Your institution may be shorthand to save space
 {
     % Your institution for the title page
-    Department of Computer Science and Information Engineering \\
-    National Taiwan University 
+    Department of Computer Science, Electrical and Space Engineering \\
+    Luleå University of Technology
     \vskip 3pt
 }
 \date{\today} % Date, can be changed to a custom date
@@ -43,8 +45,53 @@
     \tableofcontents
 \end{frame}
 
+
 %------------------------------------------------
-\section{First Section}
+
+\subimport{sections/}{introduction.tex}
+
+%------------------------------------------------
+
+\subimport{sections/}{dwarf.tex}
+
+%------------------------------------------------
+
+\subimport{sections/}{implementation.tex}
+
+%------------------------------------------------
+
+\subimport{sections/}{evaluation.tex}
+
+%------------------------------------------------
+
+\subimport{sections/}{conclution.tex}
+
+%------------------------------------------------
+
+\begin{frame}{References}
+    % Beamer does not support BibTeX so references must be inserted manually as below
+    \footnotesize{
+        \begin{thebibliography}{99}
+            \bibitem[Smith, 2012]{p1} John Smith (2012)
+            \newblock Title of the publication
+            \newblock \emph{Journal Name} 12(3), 45 -- 678.
+        \end{thebibliography}
+    }
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+    \Huge{\centerline{The End}}
+\end{frame}
+
+%----------------------------------------------------------------------------------------
+%----------------------------------------------------------------------------------------
+%----------------------------------------------------------------------------------------
+%----------------------------------------------------------------------------------------
+
+%------------------------------------------------
+%\section{First Section}
 %------------------------------------------------
 
 \begin{frame}{Bullet Points}
@@ -95,7 +142,7 @@
 \end{frame}
 
 %------------------------------------------------
-\section{Second Section}
+%\section{Second Section}
 %------------------------------------------------
 
 \begin{frame}{Table}
