@@ -6,11 +6,17 @@
 
 \begin{frame}{What is debugging}
     \begin{itemize}
-        \item Lorem ipsum dolor sit amet, consectetur adipiscing elit
-        \item Aliquam blandit faucibus nisi, sit amet dapibus enim tempus eu
-        \item Nulla commodo, erat quis gravida posuere, elit lacus lobortis est, quis porttitor odio mauris at libero
-        \item Nam cursus est eget velit posuere pellentesque
-        \item Vestibulum faucibus velit a augue condimentum quis convallis nulla gravida
+        \item The process of finding an resolving errors, flaws, or faults.
+        \item Debugging techniques:
+    	\begin{itemize} % Remove some of them.
+    	    \item Back tracking
+    	    \item Testing
+    	    \item Control flow analysis
+%    	    \item Brute force
+%    	    \item Induction
+    	    \item And more
+    	\end{itemize}
+        \item Debugging is very useful for embedded systems.
     \end{itemize}
 \end{frame}
 
@@ -19,24 +25,32 @@
 
 \begin{frame}{What is a Debugger}
     \begin{itemize}
-        \item Lorem ipsum dolor sit amet, consectetur adipiscing elit
-        \item Aliquam blandit faucibus nisi, sit amet dapibus enim tempus eu
-        \item Nulla commodo, erat quis gravida posuere, elit lacus lobortis est, quis porttitor odio mauris at libero
-        \item Nam cursus est eget velit posuere pellentesque
-        \item Vestibulum faucibus velit a augue condimentum quis convallis nulla gravida
+        \item A Debugger is a debugging tool.
+        \item Control over the debugged computer program.
+        \item Some of the most common control features:
+    	\begin{itemize}
+    	    \item Continue/Start/Run
+    	    \item Stop/Halt
+    	    \item Restart
+    	    \item Step
+    	    \item Set and remove breakpoint.
+    	\end{itemize}
     \end{itemize}
 \end{frame}
 
 %------------------------------------------------
 %------------------------------------------------
 
-\begin{frame}{List of common debugger features}
+\begin{frame}{What is a Debugger}
     \begin{itemize}
-        \item Lorem ipsum dolor sit amet, consectetur adipiscing elit
-        \item Aliquam blandit faucibus nisi, sit amet dapibus enim tempus eu
-        \item Nulla commodo, erat quis gravida posuere, elit lacus lobortis est, quis porttitor odio mauris at libero
-        \item Nam cursus est eget velit posuere pellentesque
-        \item Vestibulum faucibus velit a augue condimentum quis convallis nulla gravida
+        \item Visualisation of the debugged target state.
+        \item Some of the most common visualisation features:
+    	\begin{itemize}
+    	    \item Evaluate variables
+    	    \item Stacktrace, unwinding call stack
+    	    \item Show machine and Assembly code
+    	    \item Show relevant source code.
+    	\end{itemize}
     \end{itemize}
 \end{frame}
 
@@ -45,11 +59,23 @@
 
 \begin{frame}{Unoptimized Vs Optimized}
     \begin{itemize}
+        \item Unoptimized:
+    	\begin{itemize}
+    	    \item All variables stored in memory.
+    	\end{itemize}
+        \item Optimized:
+    	\begin{itemize}
+    	    \item Most variables stored in registery.
+    	\end{itemize}
+    \end{itemize}
+\end{frame}
+
+%------------------------------------------------
+%------------------------------------------------
+
+\begin{frame}{Motivation}
+    \begin{itemize}
         \item Lorem ipsum dolor sit amet, consectetur adipiscing elit
-        \item Aliquam blandit faucibus nisi, sit amet dapibus enim tempus eu
-        \item Nulla commodo, erat quis gravida posuere, elit lacus lobortis est, quis porttitor odio mauris at libero
-        \item Nam cursus est eget velit posuere pellentesque
-        \item Vestibulum faucibus velit a augue condimentum quis convallis nulla gravida
     \end{itemize}
 \end{frame}
 
