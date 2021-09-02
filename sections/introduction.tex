@@ -57,25 +57,23 @@
 %------------------------------------------------
 %------------------------------------------------
 
-\begin{frame}{Unoptimized Vs Optimized}
+\begin{frame}{Unoptimized Vs Optimized code}
     \begin{itemize}
         \item Unoptimized:
     	\begin{itemize}
     	    \item All variables stored in memory.
+    	    \item Very simmlilar to source code.
+    	    \item Slow to exectue.
+    	    \item Easy to debug.
     	\end{itemize}
         \item Optimized:
     	\begin{itemize}
-    	    \item Most variables stored in registery.
+    	    \item Faster to execute.
+    	    \item Some Variables temporarly stored in registery.
+%    	    \item Some loops are unwinded.
+    	    \item Some functions are inlined.
+    	    \item Difficult to debug.
     	\end{itemize}
-    \end{itemize}
-\end{frame}
-
-%------------------------------------------------
-%------------------------------------------------
-
-\begin{frame}{Motivation}
-    \begin{itemize}
-        \item Lorem ipsum dolor sit amet, consectetur adipiscing elit
     \end{itemize}
 \end{frame}
 
@@ -84,11 +82,7 @@
 
 \begin{frame}{Problem defenition}
     \begin{itemize}
-        \item Lorem ipsum dolor sit amet, consectetur adipiscing elit
-        \item Aliquam blandit faucibus nisi, sit amet dapibus enim tempus eu
-        \item Nulla commodo, erat quis gravida posuere, elit lacus lobortis est, quis porttitor odio mauris at libero
-        \item Nam cursus est eget velit posuere pellentesque
-        \item Vestibulum faucibus velit a augue condimentum quis convallis nulla gravida
+        \item Improve Debugging for optomized Rust code.
     \end{itemize}
 \end{frame}
 
@@ -97,11 +91,10 @@
 
 \begin{frame}{Motivation}
     \begin{itemize}
-        \item Lorem ipsum dolor sit amet, consectetur adipiscing elit
-        \item Aliquam blandit faucibus nisi, sit amet dapibus enim tempus eu
-        \item Nulla commodo, erat quis gravida posuere, elit lacus lobortis est, quis porttitor odio mauris at libero
-        \item Nam cursus est eget velit posuere pellentesque
-        \item Vestibulum faucibus velit a augue condimentum quis convallis nulla gravida
+        \item Unoptimized Rust code is to slow.
+        \item Debugging embedded systems.
+        \item GDB and LLDB do not work very well.
+        \item Write a debugger in Rust.
     \end{itemize}
 \end{frame}
 
@@ -110,11 +103,17 @@
 
 \begin{frame}{Deliminations}
     \begin{itemize}
-        \item Lorem ipsum dolor sit amet, consectetur adipiscing elit
-        \item Aliquam blandit faucibus nisi, sit amet dapibus enim tempus eu
-        \item Nulla commodo, erat quis gravida posuere, elit lacus lobortis est, quis porttitor odio mauris at libero
-        \item Nam cursus est eget velit posuere pellentesque
-        \item Vestibulum faucibus velit a augue condimentum quis convallis nulla gravida
+        \item Not working on rustc, LLVM and DWARF.
+        \item The debugger will not support all MCUs.
+        \item Feaures the debugger will have:
+    	\begin{itemize}
+		\item Continue, Stop, Reset and step.
+		\item Set and remove breakpoints.
+		\item Evaluate variables
+		\item Stacktrace
+		\item CLI
+		\item Support Debug Adapter Protocol(DAP)
+    	\end{itemize}
     \end{itemize}
 \end{frame}
 
