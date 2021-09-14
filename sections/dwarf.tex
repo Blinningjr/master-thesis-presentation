@@ -28,7 +28,7 @@
 	    \item Debugging with Attributed Record Formats(DWARF)
 	    \item Debug information format
 	    \item Rust uses DWARF version 4
-	    \item DWARF is devided into 12 sections
+	    \item DWARF is divided into 12 sections
 	    \item Executable and Linkable Format(ELF)
     \end{itemize}
 \end{frame}
@@ -47,7 +47,7 @@
 
 \begin{frame}{Debug Information Entry(DIE)}
 	\begin{itemize}
-	    \item DebugInformation Entry(DIE).
+	    \item Debug Information Entry(DIE).
 	    \item DWARF Attributes.
 	    \item DWARF DIE example from the .debug\_info section.
 	\end{itemize}
@@ -61,7 +61,7 @@
 
 \begin{frame}{Compilation unit}
 	\begin{itemize}
-		\item Computer program is devieded into compilation units.
+		\item Computer program is divided into compilation units.
 		\item Each compilation unit contains a DIE tree.
 	\end{itemize}
 \end{frame}
@@ -114,21 +114,21 @@
 
 \begin{frame}{Virtually Unwinding Call Stack}
     \begin{itemize}
-        \item Stack of subroutine activations.
+        \item Stack of subroutine activation's.
         \item A subroutine activation consists of:
     	\begin{itemize}
     	    \item Code location were the subroutine stopped
     	    \item Preserved register values
 	    \item Canonical Frame Address (CFA)
     	\end{itemize}
-        \item The needed infomarion is in section .debug\_frame
+        \item The needed information is in section .debug\_frame
     \end{itemize}
 \end{frame}
 
 %------------------------------------------------
 %------------------------------------------------
 
-\begin{frame}{Virtually Unwinding Subroutine Activations}
+\begin{frame}{Virtually Unwinding Subroutine Activation's}
     \begin{columns}[c] % The "c" option specifies centered vertical alignment while the "t" option is used for top vertical alignment
 
         \column{.45\textwidth} % Left column and width
@@ -136,7 +136,7 @@
         	\item Find the Common Information Entry (CIE)
 		\item Find the Frame Description Entry (FDE)
 		\item Unwind CFA and register values.
-		\item Repeat for all activations.
+		\item Repeat for all activation's.
         \end{enumerate}
 
         \column{.5\textwidth} % Right column and width
