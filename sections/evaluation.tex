@@ -13,7 +13,7 @@
 		test\_enum3 = TestEnum \{ \textless \ OptimizedOut \textgreater \}
     	\end{block}
 
-    	\begin{block}{GDB}
+    	\begin{block}{GDB Version 11.0.90}
 		(gdb) p test\_enum3\newline
 		\$ 1 = nucleo\_rtic\_blinking\_led::TestEnum::ITest(\textless optimized out\textgreater)
     	\end{block}
@@ -28,7 +28,7 @@
 		let mut test\_enum3 = TestEnum::Struct(TestStruct \{ flag: true, num: 123 \});
     	\end{alertblock}
 
-    	\begin{block}{LLDB Version 13}
+    	\begin{block}{LLDB Version 13.0.0}
 		(nucleo\_rtic\_blinking\_led::TestEnum) test\_enum3 = \{\newline
 		\text{\ \ ITest = (0 = 0)}\newline
 		\text{\ \ UTest = (0 = 0)}\newline
@@ -45,14 +45,45 @@
 %------------------------------------------------
 %------------------------------------------------
 
-\begin{frame}{Evaluating Rust enums}
-    \begin{itemize}
-        \item Lorem ipsum dolor sit amet, consectetur adipiscing elit
-        \item Aliquam blandit faucibus nisi, sit amet dapibus enim tempus eu
-        \item Nulla commodo, erat quis gravida posuere, elit lacus lobortis est, quis porttitor odio mauris at libero
-        \item Nam cursus est eget velit posuere pellentesque
-        \item Vestibulum faucibus velit a augue condimentum quis convallis nulla gravida
-    \end{itemize}
+\begin{frame}{Comparing Evalutation Of Rust Enums}
+	\begin{alertblock}{Rust Source Code}
+		let mut test\_struct = TestStruct \{ flag: true, num: 123 \};
+    	\end{alertblock}
+
+	\begin{block}{ERD}
+		test\_struct = TestStruct \{ num::123, flag::\textless \ OptimizedOut \textgreater \}
+    	\end{block}
+
+    	\begin{block}{GDB Version 11.0.90}
+		(gdb) p test\_struct\newline
+		\$ 1 = nucleo\_rtic\_blinking\_led::TestStruct \{flag: \textless sybthetic pointer\textgreater, num: 123\}
+    	\end{block}
+
+    	\begin{block}{LLDB Version 13.0.0}
+		(nucleo\_rtic\_blinking\_led::TestEnum) test\_struct = (flag = false, num = 123)
+    	\end{block}
+\end{frame}
+
+%------------------------------------------------
+%------------------------------------------------
+
+\begin{frame}{Comparing Evalutation Of Rust Enums}
+	\begin{alertblock}{Rust Source Code}
+		let mut test\_u16: u16 = 500;
+    	\end{alertblock}
+
+	\begin{block}{ERD}
+		test\_u16 = \textless OutOfRange\textgreater
+    	\end{block}
+
+    	\begin{block}{GDB Version 11.0.90}
+		(gdb) p test\_u16\newline
+		\$ 1 = \textless optimized out\textgreater
+    	\end{block}
+
+    	\begin{block}{LLDB Version 13.0.0}
+		(unsigned short) test\_u16 = \textless variable not available\textgreater
+    	\end{block}
 \end{frame}
 
 %------------------------------------------------
