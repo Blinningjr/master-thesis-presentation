@@ -5,116 +5,203 @@
 %------------------------------------------------
 
 \begin{frame}{What is debugging}
-    \begin{itemize}
-        \item The process of finding an resolving errors, flaws, or faults.
-        \item Debugging techniques:
-    	\begin{itemize} % Remove some of them.
-    	    \item Back tracking
-    	    \item Testing
-    	    \item Control flow analysis
-%    	    \item Brute force
-%    	    \item Induction
-    	    \item And many more
-    	\end{itemize}
-    \end{itemize}
+	\begin{itemize}
+		\item Debugging is the process of finding an resolving errors, flaws, or faults.
+		\item There are many different debugging techniques
+		\item A debugger is a tool for debugging.
+			\begin{itemize}
+				\item Used for controlling debugged target.
+			    \begin{itemize}
+            \item Start
+            \item Stop
+            \item Reset
+            \item Step
+            \item Breakpoints
+          \end{itemize}
+				\item Used to retrieve and visualize debug information.
+			    \begin{itemize}
+            \item Evaluate variable
+            \item Stack trace
+            \item And more
+          \end{itemize}
+      \end{itemize}
+	\end{itemize}
 \end{frame}
 
 %------------------------------------------------
 %------------------------------------------------
 
-\begin{frame}{What is a Debugger}
-    \begin{itemize}
-        \item A Debugger is a debugging tool.
-        \item Control over the debugged computer program.
-        \item Some of the most common control features:
-    	\begin{itemize}
-    	    \item Continue/Start/Run
-    	    \item Stop/Halt
-    	    \item Restart
-    	    \item Step
-    	    \item Set and remove breakpoint.
-    	\end{itemize}
-    \end{itemize}
+\begin{frame}{Unoptimized Vs Optimized Rust Code}
+	\begin{itemize}
+		\item Rust is a programming language.
+    \item Unoptimized Rust Code
+	    \begin{itemize}
+        \item Slow to run compared to other languages and optimized Rust code.
+        \item The machine code is very similar to the source code.
+        \item Values of variables are stored in memory on the stack.
+        \item Easy to debug.
+	    \end{itemize}
+    \item Optimized Rust Code
+	    \begin{itemize}
+        \item Fast compared to unoptimized code.
+        \item The machine code is very different form source code.
+        \item Values of variables have short life spans because they are stored in registers.
+        \item Hard to debug.
+	    \end{itemize}
+	\end{itemize}
 \end{frame}
 
 %------------------------------------------------
 %------------------------------------------------
 
-\begin{frame}{What is a Debugger}
-    \begin{itemize}
-        \item Visualization of the debugged target state.
-        \item Some of the most common visualization features:
-    	\begin{itemize}
-    	    \item Evaluate variables
-    	    \item Stack trace, unwinding call stack
-    	    \item Show machine and Assembly code
-    	    \item Show relevant source code.
-    	\end{itemize}
-    \end{itemize}
+\begin{frame}{Problems}
+	\begin{itemize}
+		\item Hard to debug because of short life spans of values.
+		\item Existing debuggers like GDB often say that variables are optimized out.
+		\item Existing debuggers also gives wrong result, this is especially true for LLDB.
+		\item Both LLDB and GDB are hard to use for beginners.
+	\end{itemize}
 \end{frame}
 
 %------------------------------------------------
 %------------------------------------------------
 
-\begin{frame}{Unoptimized Vs Optimized code}
-    \begin{itemize}
-        \item Unoptimized:
-    	\begin{itemize}
-    	    \item All variables stored in memory.
-    	    \item Very similar to source code.
-    	    \item Slow to execute.
-    	    \item Easy to debug.
-    	\end{itemize}
-        \item Optimized:
-    	\begin{itemize}
-    	    \item Faster to execute.
-    	    \item Some Variables temporarily stored in registry.
-%    	    \item Some loops are unwinded.
-    	    \item Some functions are inlined.
-    	    \item Difficult to debug.
-    	\end{itemize}
-    \end{itemize}
+\begin{frame}{Solution and motivation}
+	\begin{itemize}
+		\item Research if better and more debug information can be generated.
+	    \begin{itemize}
+        	\item Why? Because debuggers are restricted by the amount of debug information generated.
+	    \end{itemize}
+		\item Create a debugger for embedded systems that solve the mentioned problems.
+	    \begin{itemize}
+        	\item Why? Because debuggers are very useful for embedded systems.
+	        \begin{itemize}
+            		\item Small enough that the system can fully be understood.
+            		\item They often have high requirements to meet.
+            		\item Important that the optimized code work correctly.
+	        \end{itemize}
+        	\item Unoptimized code is to slow.
+        	\item Written is Rust to use the benefits of Rust.
+	    \end{itemize}
+	\end{itemize}
 \end{frame}
 
 %------------------------------------------------
-%------------------------------------------------
 
-%\begin{frame}{Problem defenition}
+
+%%------------------------------------------------
+%
+%\begin{frame}{What is debugging}
 %    \begin{itemize}
-%        \item Improve Debugging for optomized Rust code.
-%    \end{itemize}
-%\end{frame}
-
-%------------------------------------------------
-%------------------------------------------------
-
-\begin{frame}{Motivation}
-    \begin{itemize}
-        \item Unoptimized Rust code is to slow.
-        \item Debugging embedded systems.
-        \item GDB and LLDB do not work very well.
-        \item Write a debugger in Rust.
-    \end{itemize}
-\end{frame}
-
-%------------------------------------------------
-%------------------------------------------------
-
-%\begin{frame}{Deliminations}
-%    \begin{itemize}
-%        \item Not working on rustc, LLVM and DWARF.
-%        \item The debugger will not support all MCUs.
-%        \item Feaures the debugger will have:
-%    	\begin{itemize}
-%		\item Continue, Stop, Reset and step.
-%		\item Set and remove breakpoints.
-%		\item Evaluate variables
-%		\item Stacktrace
-%		\item CLI
-%		\item Support Debug Adapter Protocol(DAP)
+%        \item The process of finding an resolving errors, flaws, or faults.
+%        \item Debugging techniques:
+%    	\begin{itemize} % Remove some of them.
+%    	    \item Back tracking
+%    	    \item Testing
+%    	    \item Control flow analysis
+%%    	    \item Brute force
+%%    	    \item Induction
+%    	    \item And many more
 %    	\end{itemize}
 %    \end{itemize}
 %\end{frame}
-
-%------------------------------------------------
+%
+%%------------------------------------------------
+%%------------------------------------------------
+%
+%\begin{frame}{What is a Debugger}
+%    \begin{itemize}
+%        \item A Debugger is a debugging tool.
+%        \item Control over the debugged computer program.
+%        \item Some of the most common control features:
+%    	\begin{itemize}
+%    	    \item Continue/Start/Run
+%    	    \item Stop/Halt
+%    	    \item Restart
+%    	    \item Step
+%    	    \item Set and remove breakpoint.
+%    	\end{itemize}
+%    \end{itemize}
+%\end{frame}
+%
+%%------------------------------------------------
+%%------------------------------------------------
+%
+%\begin{frame}{What is a Debugger}
+%    \begin{itemize}
+%        \item Visualization of the debugged target state.
+%        \item Some of the most common visualization features:
+%    	\begin{itemize}
+%    	    \item Evaluate variables
+%    	    \item Stack trace, unwinding call stack
+%    	    \item Show machine and Assembly code
+%    	    \item Show relevant source code.
+%    	\end{itemize}
+%    \end{itemize}
+%\end{frame}
+%
+%%------------------------------------------------
+%%------------------------------------------------
+%
+%\begin{frame}{Unoptimized Vs Optimized code}
+%    \begin{itemize}
+%        \item Unoptimized:
+%    	\begin{itemize}
+%    	    \item All variables stored in memory.
+%    	    \item Very similar to source code.
+%    	    \item Slow to execute.
+%    	    \item Easy to debug.
+%    	\end{itemize}
+%        \item Optimized:
+%    	\begin{itemize}
+%    	    \item Faster to execute.
+%    	    \item Some Variables temporarily stored in registry.
+%%    	    \item Some loops are unwinded.
+%    	    \item Some functions are inlined.
+%    	    \item Difficult to debug.
+%    	\end{itemize}
+%    \end{itemize}
+%\end{frame}
+%
+%%------------------------------------------------
+%%------------------------------------------------
+%
+%%\begin{frame}{Problem defenition}
+%%    \begin{itemize}
+%%        \item Improve Debugging for optomized Rust code.
+%%    \end{itemize}
+%%\end{frame}
+%
+%%------------------------------------------------
+%%------------------------------------------------
+%
+%\begin{frame}{Motivation}
+%    \begin{itemize}
+%        \item Unoptimized Rust code is to slow.
+%        \item Debugging embedded systems.
+%        \item GDB and LLDB do not work very well.
+%        \item Write a debugger in Rust.
+%    \end{itemize}
+%\end{frame}
+%
+%%------------------------------------------------
+%%------------------------------------------------
+%
+%%\begin{frame}{Deliminations}
+%%    \begin{itemize}
+%%        \item Not working on rustc, LLVM and DWARF.
+%%        \item The debugger will not support all MCUs.
+%%        \item Feaures the debugger will have:
+%%    	\begin{itemize}
+%%		\item Continue, Stop, Reset and step.
+%%		\item Set and remove breakpoints.
+%%		\item Evaluate variables
+%%		\item Stacktrace
+%%		\item CLI
+%%		\item Support Debug Adapter Protocol(DAP)
+%%    	\end{itemize}
+%%    \end{itemize}
+%%\end{frame}
+%
+%%------------------------------------------------
 
