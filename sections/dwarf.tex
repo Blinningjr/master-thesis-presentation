@@ -4,7 +4,6 @@
 %----------------------------------------------------------------------------------------
 %------------------------------------------------
 %------------------------------------------------
-
 \begin{frame}{DWARF}
 	\begin{figure}
 		\includegraphics[width=0.9\textwidth,height=0.48\textwidth,keepaspectratio]{gimli.jpeg}
@@ -22,14 +21,13 @@
 
 %------------------------------------------------
 %------------------------------------------------
-
-\begin{frame}{DWARF}
+\begin{frame}{How to get the debug information?}
     \begin{itemize}
-	    \item Debugging with Attributed Record Formats(DWARF)
-	    \item Debug information format
-	    \item Rust uses DWARF version 4
-	    \item DWARF is divided into 12 sections
-	    \item Executable and Linkable Format(ELF)
+	    \item Rust generates a Executable and Linkable Format(ELF) file.
+	    \item ELF contains the Debugging with Attributed Record Formats(DWARF).
+	    \item DWARF is used to understand how the source and machine code relates to each other.
+	    \item Rust uses DWARF version 4.
+	    \item Dwarf is divided into 12 sections.
     \end{itemize}
 \end{frame}
 
@@ -39,6 +37,29 @@
 \begin{frame}{DWARF Sections}
 	\begin{figure}
 		\includegraphics[width=0.9\textwidth,height=0.48\textwidth,keepaspectratio]{dwarf-sections.png}
+	\end{figure}
+\end{frame}
+
+%------------------------------------------------
+%------------------------------------------------
+
+\begin{frame}{Compilation unit}
+	\begin{itemize}
+		\item Sections .debug\_info and .debug\_types contain a number of compilation units.
+		\item A compilation unit can be one program or library for example.
+		\item Each compilation unit contains all the related debug information for that unit.
+		\item Each compilation unit contains a tree of DIEs.
+		\item DIE stand fore Debug Information Entry.
+		\item A DIE contains information about a piece of the source code, like a variable for example.
+	\end{itemize}
+\end{frame}
+
+%------------------------------------------------
+%------------------------------------------------
+
+\begin{frame}{Compilation unit}
+	\begin{figure}
+		\includegraphics[width=0.9\textwidth,height=0.48\textwidth,keepaspectratio]{die-tree.png}
 	\end{figure}
 \end{frame}
 
@@ -59,20 +80,17 @@
 %------------------------------------------------
 %------------------------------------------------
 
-\begin{frame}{Compilation unit}
+\begin{frame}{An example on how to use DWARF}
 	\begin{itemize}
-		\item Computer program is divided into compilation units.
-		\item Each compilation unit contains a DIE tree.
+	    \item How can DWARF be used to evaluate the value of a variable?
+		\begin{itemize}
+		    \item Two things are needed from DWARF.
+			\begin{itemize}
+			    \item Location of the value in the debug target.
+			    \item The type of the variable.
+			\end{itemize}
+		\end{itemize}
 	\end{itemize}
-\end{frame}
-
-%------------------------------------------------
-%------------------------------------------------
-
-\begin{frame}{Compilation unit}
-	\begin{figure}
-		\includegraphics[width=0.9\textwidth,height=0.48\textwidth,keepaspectratio]{die-tree.png}
-	\end{figure}
 \end{frame}
 
 %------------------------------------------------
@@ -80,14 +98,10 @@
 
 \begin{frame}{Evaluating a variable}
 	\begin{itemize}
-		\item Find the current compilation unit.
-		\item Find the current subprogram die.
-		\item Find the searched variable die. 
-		\item Two parts to evaluating a variable:
-			\begin{itemize}
-				\item Finding the location of the variable
-				\item Parsing the value into the correct type
-			\end{itemize}
+		\item Read the current code location from the debug target.
+		\item Find the current compilation unit using the current code location.
+		\item Find the current subprogram DIE using the current code location.
+		\item Find the searched variable DIE in the sub tree of the subprogram DIE. 
 	\end{itemize}
 \end{frame}
 
@@ -110,42 +124,150 @@
 \end{frame}
 
 %------------------------------------------------
-%------------------------------------------------
 
-\begin{frame}{Virtually Unwinding Call Stack}
-    \begin{itemize}
-        \item Stack of subroutine activation's.
-        \item A subroutine activation consists of:
-    	\begin{itemize}
-    	    \item Code location were the subroutine stopped
-    	    \item Preserved register values
-	    \item Canonical Frame Address (CFA)
-    	\end{itemize}
-        \item The needed information is in section .debug\_frame
-    \end{itemize}
-\end{frame}
 
-%------------------------------------------------
-%------------------------------------------------
-
-\begin{frame}{Virtually Unwinding Subroutine Activation's}
-    \begin{columns}[c] % The "c" option specifies centered vertical alignment while the "t" option is used for top vertical alignment
-
-        \column{.45\textwidth} % Left column and width
-        \begin{enumerate}
-        	\item Find the Common Information Entry (CIE)
-		\item Find the Frame Description Entry (FDE)
-		\item Unwind CFA and register values.
-		\item Repeat for all activation's.
-        \end{enumerate}
-
-        \column{.5\textwidth} % Right column and width
-	\begin{figure}
-		\includegraphics[width=0.9\textwidth,height=0.48\textwidth,keepaspectratio]{stacktrace-table.png}
-	\end{figure}
-    \end{columns}
-
-\end{frame}
-
-%------------------------------------------------
-
+%%------------------------------------------------
+%\begin{frame}{DWARF}
+%	\begin{figure}
+%		\includegraphics[width=0.9\textwidth,height=0.48\textwidth,keepaspectratio]{gimli.jpeg}
+%	\end{figure}
+%\end{frame}
+%
+%%------------------------------------------------
+%%------------------------------------------------
+%
+%\begin{frame}{DWARF}
+%	\begin{figure}
+%		\includegraphics[width=0.9\textwidth,height=0.48\textwidth,keepaspectratio]{dwarf_logo.png}
+%	\end{figure}
+%\end{frame}
+%
+%%------------------------------------------------
+%%------------------------------------------------
+%
+%\begin{frame}{DWARF}
+%    \begin{itemize}
+%	    \item Debugging with Attributed Record Formats(DWARF)
+%	    \item Debug information format
+%	    \item Rust uses DWARF version 4
+%	    \item DWARF is divided into 12 sections
+%	    \item Executable and Linkable Format(ELF)
+%    \end{itemize}
+%\end{frame}
+%
+%%------------------------------------------------
+%%------------------------------------------------
+%
+%\begin{frame}{DWARF Sections}
+%	\begin{figure}
+%		\includegraphics[width=0.9\textwidth,height=0.48\textwidth,keepaspectratio]{dwarf-sections.png}
+%	\end{figure}
+%\end{frame}
+%
+%%------------------------------------------------
+%%------------------------------------------------
+%
+%\begin{frame}{Debug Information Entry(DIE)}
+%	\begin{itemize}
+%	    \item Debug Information Entry(DIE).
+%	    \item DWARF Attributes.
+%	    \item DWARF DIE example from the .debug\_info section.
+%	\end{itemize}
+%	\begin{figure}
+%		\includegraphics[width=0.9\textwidth,height=0.48\textwidth,keepaspectratio]{dwarf-die.png}
+%	\end{figure}
+%\end{frame}
+%
+%%------------------------------------------------
+%%------------------------------------------------
+%
+%\begin{frame}{Compilation unit}
+%	\begin{itemize}
+%		\item Computer program is divided into compilation units.
+%		\item Each compilation unit contains a DIE tree.
+%	\end{itemize}
+%\end{frame}
+%
+%%------------------------------------------------
+%%------------------------------------------------
+%
+%\begin{frame}{Compilation unit}
+%	\begin{figure}
+%		\includegraphics[width=0.9\textwidth,height=0.48\textwidth,keepaspectratio]{die-tree.png}
+%	\end{figure}
+%\end{frame}
+%
+%%------------------------------------------------
+%%------------------------------------------------
+%
+%\begin{frame}{Evaluating a variable}
+%	\begin{itemize}
+%		\item Find the current compilation unit.
+%		\item Find the current subprogram die.
+%		\item Find the searched variable die. 
+%		\item Two parts to evaluating a variable:
+%			\begin{itemize}
+%				\item Finding the location of the variable
+%				\item Parsing the value into the correct type
+%			\end{itemize}
+%	\end{itemize}
+%\end{frame}
+%
+%%------------------------------------------------
+%%------------------------------------------------
+%
+%\begin{frame}{Evaluating the location of a variable}
+%	\begin{figure}
+%		\includegraphics[width=0.9\textwidth,height=0.48\textwidth,keepaspectratio]{subprogram-example.png}
+%	\end{figure}
+%\end{frame}
+%
+%%------------------------------------------------
+%%------------------------------------------------
+%
+%\begin{frame}{Parsing the type of a variable}
+%	\begin{figure}
+%		\includegraphics[width=0.9\textwidth,height=0.48\textwidth,keepaspectratio]{basetype-example.png}
+%	\end{figure}
+%\end{frame}
+%
+%%------------------------------------------------
+%%------------------------------------------------
+%
+%\begin{frame}{Virtually Unwinding Call Stack}
+%    \begin{itemize}
+%        \item Stack of subroutine activation's.
+%        \item A subroutine activation consists of:
+%    	\begin{itemize}
+%    	    \item Code location were the subroutine stopped
+%    	    \item Preserved register values
+%	    \item Canonical Frame Address (CFA)
+%    	\end{itemize}
+%        \item The needed information is in section .debug\_frame
+%    \end{itemize}
+%\end{frame}
+%
+%%------------------------------------------------
+%%------------------------------------------------
+%
+%\begin{frame}{Virtually Unwinding Subroutine Activation's}
+%    \begin{columns}[c] % The "c" option specifies centered vertical alignment while the "t" option is used for top vertical alignment
+%
+%        \column{.45\textwidth} % Left column and width
+%        \begin{enumerate}
+%        	\item Find the Common Information Entry (CIE)
+%		\item Find the Frame Description Entry (FDE)
+%		\item Unwind CFA and register values.
+%		\item Repeat for all activation's.
+%        \end{enumerate}
+%
+%        \column{.5\textwidth} % Right column and width
+%	\begin{figure}
+%		\includegraphics[width=0.9\textwidth,height=0.48\textwidth,keepaspectratio]{stacktrace-table.png}
+%	\end{figure}
+%    \end{columns}
+%
+%\end{frame}
+%
+%%------------------------------------------------
+%
