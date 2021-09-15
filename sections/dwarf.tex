@@ -15,7 +15,7 @@
 
 \begin{frame}{DWARF}
 	\begin{figure}
-		\includegraphics[width=0.9\textwidth,height=0.48\textwidth,keepaspectratio]{dwarf_logo.png}
+		\includegraphics[width=0.3\textwidth,height=0.48\textwidth,keepaspectratio]{dwarf_logo.png}
 	\end{figure}
 \end{frame}
 
@@ -36,7 +36,7 @@
 
 \begin{frame}{DWARF Sections}
 	\begin{figure}
-		\includegraphics[width=0.9\textwidth,height=0.48\textwidth,keepaspectratio]{dwarf-sections.png}
+		\includegraphics[width=0.9\textwidth,height=0.40\textwidth,keepaspectratio]{dwarf-sections.png}
 	\end{figure}
 \end{frame}
 
@@ -57,11 +57,11 @@
 %------------------------------------------------
 %------------------------------------------------
 
-\begin{frame}{Compilation unit}
-	\begin{figure}
-		\includegraphics[width=0.9\textwidth,height=0.48\textwidth,keepaspectratio]{die-tree.png}
-	\end{figure}
-\end{frame}
+%\begin{frame}{Compilation unit}
+%	\begin{figure}
+%		\includegraphics[width=0.9\textwidth,height=0.40\textwidth,keepaspectratio]{die-tree.png}
+%	\end{figure}
+%\end{frame}
 
 %------------------------------------------------
 %------------------------------------------------
@@ -69,7 +69,10 @@
 \begin{frame}{Debug Information Entry(DIE)}
 	\begin{itemize}
 	    \item Debug Information Entry(DIE).
-	    \item DWARF Attributes.
+		\begin{itemize}
+	    		\item All DIEs have a DWARF TAG.
+	    		\item DIEs also contain a number of DWARF attributesa.
+		\end{itemize}
 	    \item DWARF DIE example from the .debug\_info section.
 	\end{itemize}
 	\begin{figure}
